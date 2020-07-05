@@ -1,0 +1,89 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <td>
+    <label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />初めて申し込む</label>
+    <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />2度目以降の利用</label>
+  </td>
+
+  <!----きりかえ1--->
+  <div id="firstBox">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :age %>
+      <%= form.number_field :age %>
+    </div>
+
+    <div class="field">
+      <%= form.label :introduction %>
+      <%= form.text_area :introduction %>
+    </div>
+
+    <div class="field">
+      <%= form.label :who %>
+      <%= form.text_field :who %>
+    </div>
+
+    <div class="field">
+      <%= form.label :want %>
+      <%= form.text_field :want %>
+    </div>
+  </div>
+
+
+  <!----きりかえ2--->
+  <div id="secondBox">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :age %>
+      <%= form.number_field :age %>
+    </div>
+
+    <div class="field">
+      <%= form.label :introduction %>
+      <%= form.text_area :introduction %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+function entryChange1(){
+radio = document.getElementsByName('entryPlan')
+if(radio[0].checked) {
+//フォーム
+document.getElementById('firstBox').style.display = "";
+document.getElementById('secondBox').style.display = "none";
+//特典
+}else if(radio[1].checked) {
+//フォーム
+document.getElementById('firstBox').style.display = "none";
+document.getElementById('secondBox').style.display = "";
+//特典
+}
+}
+//オンロードさせ、リロード時に選択を保持
+window.onload = entryChange1();
+</script>
